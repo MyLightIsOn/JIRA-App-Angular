@@ -14,6 +14,20 @@
 </header>
 
 <section class="projects_container">
+    <div class="project_template" ng-repeat="project in projects">
+        <div class="projects">
+            <div class="projects_header">
+                <img class="project_avatar" src="{{project.projectAvatar}}"></img>
+                <span class="project_title">{{project.projectName}}</span>
+                <a href="#" class="project_toggle"></a>
+            </div>
 
+            <div class="proj_closed">
+            </div>
+
+            <div class="proj_open hidden">
+            </div>
+        </div>
+    </div>
 </section>
 

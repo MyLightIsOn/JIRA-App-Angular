@@ -5,7 +5,7 @@ angular.module('jiraViewerApp', [
         'ngResource',
         'ngSanitize',
         'ngRoute',
-        'ui.bootstrap',
+        'ui.bootstrap'
     ])
     .config(function ($routeProvider) {
         $routeProvider
