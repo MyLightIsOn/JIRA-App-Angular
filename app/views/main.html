@@ -2,7 +2,7 @@
     <p class="title">Jira In Progress Viewer</p>
     <div id="proj_summary">
         <div class="proj proj_green">
-
+            <img class="quick_view" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks">
         </div>
         <div class="proj proj_yellow">
 
@@ -15,10 +15,10 @@
 
 <section class="projects_container">
 
-    <div class="project_template" ng-repeat="project in projects">
+    <div class="project_template" data-ng-repeat="project in projects">
         <div class="projects">
             <div class="projects_header">
-                <img class="project_avatar" ng-src="{{project.projectAvatar}}"></img>
+                <img class="project_avatar" data-ng-src="{{project.projectAvatar}}"></img>
                 <span class="project_title">{{project.projectName}}</span>
                 <a href="#" class="project_toggle"></a>
             </div>
