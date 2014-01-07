@@ -2,13 +2,13 @@
     <p class="title">Jira In Progress Viewer</p>
     <div id="proj_summary">
         <div class="proj proj_green">
-            <img class="quick_view" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks">
+            <img class="quick_view" data-ng-show="task.rounded_percent <= 90" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks" alt="{{task.rounded_percent}}">
         </div>
         <div class="proj proj_yellow">
-
+            <img class="quick_view" data-ng-show="task.rounded_percent >= 91 && task.rounded_percent <= 110" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks" alt="{{task.rounded_percent}}">
         </div>
         <div class="proj proj_red">
-
+            <img class="quick_view" data-ng-show="task.rounded_percent >= 111" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks" alt="{{task.rounded_percent}}">
         </div>
     </div>
 </header>
