@@ -8,11 +8,13 @@ angular.module('jiraViewerApp')
         userRepository.getData().then(function(data){
 
             //Places the projects object in scope for Angular view rendering
-            $scope.projects = data;
-            $scope.project_tasks = [];
+            $scope.projectsData = {
+                projects: data
+            };
+            console.log($scope.projectsData)
 
             //Iterates through each $scope.projects array
-            $.each($scope.projects, function(){
+            $.each($scope.projectsData.projects, function(){
 
                 //Puts each project's detail into project_details variable to be iterated later.
                 var project_details = this.projectDetails;
@@ -89,11 +91,12 @@ angular.module('jiraViewerApp')
                     this.remaining_hours = this.origEstimate_hours - this.elapsed_hours;
                     this.remaining_minutes = this.origEstimate_minutes - this.elapsed_minutes;
 
-                    //Pushes all the calculated data for each task into the project_tasks scope
-                    $scope.project_tasks.push(this);
                 });
             });
         });
+
+        //Style logic
+        $('.closed_project_tasks').css( "color", "red" );
     });
 
 

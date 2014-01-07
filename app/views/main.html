@@ -2,21 +2,28 @@
     <p class="title">Jira In Progress Viewer</p>
     <div id="proj_summary">
         <div class="proj proj_green">
-            <img class="quick_view" data-ng-show="task.rounded_percent <= 90" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks" alt="{{task.rounded_percent}}">
+            <div data-ng-repeat="project in projectsData.projects" class="angular_repeat_element">
+                <img class="quick_view" data-ng-show="task.rounded_percent <= 90" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project.projectDetails" alt="{{task.rounded_percent}}">
+            </div>
         </div>
         <div class="proj proj_yellow">
-            <img class="quick_view" data-ng-show="task.rounded_percent >= 91 && task.rounded_percent <= 110" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks" alt="{{task.rounded_percent}}">
+            <div data-ng-repeat="project in projectsData.projects" class="angular_repeat_element">
+                <img class="quick_view" data-ng-show="task.rounded_percent >= 91 && task.rounded_percent <= 110" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project.projectDetails" alt="{{task.rounded_percent}}">
+            </div>
         </div>
         <div class="proj proj_red">
-            <img class="quick_view" data-ng-show="task.rounded_percent >= 111" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project_tasks" alt="{{task.rounded_percent}}">
+            <div data-ng-repeat="project in projectsData.projects" class="angular_repeat_element">
+                <img class="quick_view" data-ng-show="task.rounded_percent >= 111" data-ng-src="{{task.userAvatar}}" data-ng-repeat="task in project.projectDetails" alt="{{task.rounded_percent}}">
+            </div>
         </div>
     </div>
 </header>
 
 <section class="projects_container">
 
-    <div class="project_template" data-ng-repeat="project in projects">
+    <div class="project_template" data-ng-repeat="project in projectsData.projects">
         <div class="projects">
+
             <div class="projects_header">
                 <img class="project_avatar" data-ng-src="{{project.projectAvatar}}"></img>
                 <span class="project_title">{{project.projectName}}</span>
@@ -24,9 +31,14 @@
             </div>
 
             <div class="proj_closed">
+                <div data-ng-repeat="task in project.projectDetails" class="closed_project_tasks angular_repeat_element">
+                    <img data-ng-src="{{task.userAvatar}}">
+                    <span class="percentage">{{task.rounded_percent}}</span>
+                </div>
             </div>
 
             <div class="proj_open hidden">
+
             </div>
         </div>
     </div>
