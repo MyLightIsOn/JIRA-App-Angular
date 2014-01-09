@@ -1,17 +1,15 @@
 'use strict';
 
 angular.module('jiraViewerApp')
-    .controller('MainCtrl', function ($scope, userRepository) {
-        var i = 0;
+    .controller('MainCtrl', function ($scope, $timeout, userRepository) {
 
         //Gets the data from services.js
         userRepository.getData().then(function(data){
 
-            //Places the projects object in scope for Angular view rendering
+            //Places the projects object in scope for Angular view usage
             $scope.projectsData = {
                 projects: data
             };
-            console.log($scope.projectsData)
 
             //Iterates through each $scope.projects array
             $.each($scope.projectsData.projects, function(){
@@ -22,10 +20,7 @@ angular.module('jiraViewerApp')
                 //Iterates over project details. This will create various properties for each project
                 $.each(project_details, function(){
                     var percentage_used,
-                        rounded_percent,
-                        now = moment(),
-                        avatar = this.userAvatar,
-                        task_name = this.taskName,
+                        now = moment(), //moment.js function that gets the current date;
 
                     //Converts original estimates into minutes. Adjusted to days = 7.5 hours and weeks = 5 days
                         orig_taskWeeks = this.origEstimate_weeks * 2250,
@@ -84,19 +79,28 @@ angular.module('jiraViewerApp')
                     this.orig_total = orig_taskWeeks + orig_taskDays + orig_taskHours + orig_taskMinutes;                   //Total number of minutes allocated
                     percentage_used = (((Math.round((this.calculated_elapsed_total / this.orig_total)*100)/100)) * 100);    //Percentage of time used
                     this.rounded_percent = Math.round(percentage_used);                                                     //Percentage of time rounded
-                    rounded_percent = this.rounded_percent;
-
-                    this.remaining_weeks = this.origEstimate_weeks - this.elapsed_weeks;
-                    this.remaining_days = this.origEstimate_days - this.elapsed_days;
-                    this.remaining_hours = this.origEstimate_hours - this.elapsed_hours;
-                    this.remaining_minutes = this.origEstimate_minutes - this.elapsed_minutes;
 
                 });
             });
         });
 
-        //Style logic
-        $('.closed_project_tasks').css( "color", "red" );
+        //Timer function - Recalculates the completion percentage every minute
+        (function timer(){
+            $timeout(function(){
+                $.each($scope.projectsData.projects, function(){
+                    var project_details = this.projectDetails;
+                    $.each(project_details, function(){
+                        var percentage_used;
+
+                        this.calculated_elapsed_total = this.calculated_elapsed_total + 1;                                      //Adds a minute to elapsed time
+                        percentage_used = (((Math.round((this.calculated_elapsed_total / this.orig_total)*100)/100)) * 100);    //Percentage of time used
+                        this.rounded_percent = Math.round(percentage_used);                                                     //Percentage of time rounded
+                    });
+                });
+                timer();
+            }, 60000);
+        })();
+
     });
 
 
