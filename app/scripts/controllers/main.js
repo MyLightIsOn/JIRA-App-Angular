@@ -78,7 +78,7 @@ angular.module('jiraViewerApp')
                     this.calculated_elapsed_total = elapsed_weeks + elapsed_days + elapsed_hours + elapsed_minutes;         //Total number of minutes passed
                     this.orig_total = orig_taskWeeks + orig_taskDays + orig_taskHours + orig_taskMinutes;                   //Total number of minutes allocated
                     percentage_used = (((Math.round((this.calculated_elapsed_total / this.orig_total)*100)/100)) * 100);    //Percentage of time used
-                    this.rounded_percent = Math.round(percentage_used);                                                     //Percentage of time rounded
+                    this.rounded_percent = Math.round(percentage_used);
 
                 });
             });
@@ -101,6 +101,8 @@ angular.module('jiraViewerApp')
             }, 60000);
         })();
 
+        //This initially sets all the projects to closed and allows for toggling.
+        $scope.project_closed = true;
     });
 
 

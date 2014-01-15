@@ -17,25 +17,42 @@
             </div>
         </div>
     </div>
+
 </header>
 
 <section class="projects_container">
 
     <div class="project_template" data-ng-repeat="project in projectsData.projects">
         <div class="projects">
+
             <div class="projects_header">
                 <img class="project_avatar" data-ng-src="{{project.projectAvatar}}"></img>
                 <span class="project_title">{{project.projectName}}</span>
-                <a href="#" class="project_toggle"></a>
-            </div>
-            <div class="proj_closed">
-                <div data-ng-repeat="task in project.projectDetails" class="closed_project_tasks user" ng-class="{red: task.rounded_percent >= 111, yellow: task.rounded_percent >= 91 && task.rounded_percent <=110, green: task.rounded_percent <= 90}">
-                    <img data-ng-src="{{task.userAvatar}}">
-                    <span class="percentage">{{task.rounded_percent}}</span>
-                </div>
+                <a href="" data-ng-class="{'project_toggle': project_closed, 'project_toggle open': !project_closed}" data-ng-click="project_closed = !project_closed"></a>
             </div>
 
-            <div class="proj_open hidden">
+            <div data-ng-repeat="task in project.projectDetails" class=".angular_repeat_element">
+
+                <div data-ng-class="{'proj_closed': project_closed, 'proj_closed hidden': !project_closed}" data-ng-click="project_closed = !project_closed">
+                    <div class="closed_project_tasks user" data-ng-class="{red: task.rounded_percent >= 111, yellow: task.rounded_percent >= 91 && task.rounded_percent <=110, green: task.rounded_percent <= 90}">
+                        <img data-ng-src="{{task.userAvatar}}">
+                        <span class="percentage">{{task.rounded_percent}}</span>
+                    </div>
+                </div>
+
+                <div data-ng-class="{'proj_open hidden': project_closed, 'proj_open': !project_closed}" data-ng-click="project_closed = !project_closed">
+                    <div class="user_container">
+                        <img data-ngsrc="{{task.userAvatar}}">
+                        <span class="user_name">{{task.username}}</span>
+                        <div class="task_details">
+                            <div class="task_title">{{task.taskName}}</div>
+                            <p class="task_percent">{{task.rounded_percent}}</p>
+                            <div class="buffer_div"></div>
+                            <div class="progressbar"></div>
+                            <div class="time_info"></div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
