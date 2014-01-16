@@ -10,8 +10,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+
     <link href='http://fonts.googleapis.com/css?family=Bitter:400,700|Roboto:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
@@ -21,7 +24,7 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="container" data-ng-view=""></div>
+<div id="main_container" data-ng-view=""></div>
 
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>

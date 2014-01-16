@@ -28,7 +28,7 @@
             <div class="projects_header">
                 <img class="project_avatar" data-ng-src="{{project.projectAvatar}}"></img>
                 <span class="project_title">{{project.projectName}}</span>
-                <a href="" data-ng-class="{'project_toggle': project_closed, 'project_toggle open': !project_closed}" data-ng-click="project_closed = !project_closed"></a>
+                <a data-ng-class="{'project_toggle': project_closed, 'project_toggle open': !project_closed}" data-ng-click="project_closed = !project_closed"></a>
             </div>
 
             <div data-ng-repeat="task in project.projectDetails" class=".angular_repeat_element">
@@ -48,7 +48,7 @@
                             <div class="task_title">{{task.taskName}}</div>
                             <p class="task_percent">{{task.rounded_percent}}</p>
                             <div class="buffer_div"></div>
-                            <div class="progressbar"></div>
+                            <progressbar max="100" value="task.rounded_percent"></progressbar>
                             <div class="time_info"></div>
                         </div>
                     </div>
