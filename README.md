@@ -42,7 +42,7 @@ You will need to install Node.js in order to develop/run this project. Get it fr
 
 ### Global Dependencies
 
-Install [Yeoman](http://http://yeoman.io/), [Grunt](http://gruntjs.com) and [Bower](http://http://bower.io/) as global dependencies. From the command line type:
+Install [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com) and [Bower](http://bower.io/) as global dependencies. From the command line type:
 
     npm install -g yo grunt-cli bower
 
