@@ -67,7 +67,7 @@ To run unit tests on the app, type:
 
     grunt karma
 
-For instructions on setting up unit tests using Jasmine, refer to [http://pivotal.github.io/jasmine/](http://pivotal.github.io/jasmine/)
+For instructions on setting up unit tests using Jasmine, refer to [https://jasmine.github.io/](https://jasmine.github.io/)
 
 Default Grunt Tasks
 ===================
